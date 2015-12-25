@@ -30,10 +30,6 @@ style =
     color:          "rgba(0, 0, 0, .1)"
     color_active:   "rgba(105, 105, 105, .4)"
 
-  # Misc
-  text_transform: "uppercase"
-
-
 # Get the current hour as word.
 command: ""
 
