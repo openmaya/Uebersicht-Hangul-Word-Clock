@@ -3,7 +3,7 @@ Square Word Clock in Korean widget for Übersicht
 
 
 ## Screenshot
-(./screenshot.png)
+![screenshot](screenshot.png)
 
 ## Description
 Übersicht widget to shows a squre clock in Korean
