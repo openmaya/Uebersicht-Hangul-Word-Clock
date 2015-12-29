@@ -53,11 +53,11 @@ render: (o) -> """
 
 update: (output, dom) ->
   
-  hours = [["열","두"], ["한"], ["두"], ["세"], ["네"], ["다","섯"], ["여1","섯"], ["일","곱"],
-    ["여2","덟"], ["아","홉"], ["열"], ["열","한"], ["열","두"]]
+  hours = [["정1"], ["한"], ["두"], ["세"], ["네"], ["다","섯"], ["여","섯"], ["일","곱"],
+    ["여","덟"], ["아","홉"], ["열"], ["열","한"], ["열","두"]]
   minutes = [null, ["오2"], ["십1"], ["십2","오"], ["이","십1"], ["이","십1","오2"], ["삼","십1"],["삼","십1","오2"], ["사","십2"],
     ["사","십2","오2"], ["오1","십2"], ["오1","십2","오2"]]
-  noons = [["자","정"],["정","오1"]]
+  noons = [["자","정2"],["정2","오1"]]
   
   ligthOffAll = () ->$(dom).find(".active").removeClass("active")
   lightOn = (str) -> $(dom).find("##{str}").addClass("active")
@@ -69,7 +69,7 @@ update: (output, dom) ->
   date   = new Date()
   minute = date.getMinutes()
   hour   = date.getHours()
-  minute = 0
+  
   if (hour is 0 or hour is 12) and minute is 0 
     lightOn h_typo for h_typo in noons[Math.floor(hour / 12)]
   else
