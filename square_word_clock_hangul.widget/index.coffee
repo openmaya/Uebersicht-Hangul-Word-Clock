@@ -10,8 +10,8 @@ style =
   # Define the position, where to display the time.
   # Set properties you don't need to "auto"
   position:
-    bottom: "100px"
-    right:  "100px"
+    bottom: "10px"
+    right:  "10px"
 
   # Font properties
   font:                 "'Andale Mono', sans-serif"
@@ -45,12 +45,15 @@ render: (o) -> """
     <span id="자">자</span><span id="정">정</span><span id="이">이</span><span id="삼">삼</span><span id="십1">십</span><br/>
     <span id="사">사</span><span id="오1">오</span><span id="십2">십</span><span id="오2">오</span><span id="분">분</span><br/>
   </div>
+  <div id="log">
+
+  </div>
 """
 
 
 update: (output, dom) ->
   
-  hours = [["한"], ["두"], ["세"], ["네"], ["다","섯"], ["여1"],["섯"], ["일","곱"],
+  hours = [["열","두"], ["한"], ["두"], ["세"], ["네"], ["다","섯"], ["여1","섯"], ["일","곱"],
     ["여2","덟"], ["아","홉"], ["열"], ["열","한"], ["열","두"]]
   minutes = [null, ["오2"], ["십1"], ["십2","오"], ["이","십1"], ["이","십1","오2"], ["삼","십1"],["삼","십1","오2"], ["사","십2"],
     ["사","십2","오2"], ["오1","십2"], ["오1","십2","오2"]]
@@ -58,6 +61,7 @@ update: (output, dom) ->
   
   ligthOffAll = () ->$(dom).find(".active").removeClass("active")
   lightOn = (str) -> $(dom).find("##{str}").addClass("active")
+  log = (str) -> $(dom).find("#log").html(str)
   timeOn = (ar) -> lightOn typo for typo in ar
 
   ligthOffAll()
@@ -65,7 +69,7 @@ update: (output, dom) ->
   date   = new Date()
   minute = date.getMinutes()
   hour   = date.getHours()
-
+  minute = 0
   if (hour is 0 or hour is 12) and minute is 0 
     lightOn h_typo for h_typo in noons[Math.floor(hour / 12)]
   else
