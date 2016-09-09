@@ -2,33 +2,27 @@
 # Square Word Clock in Korean widget for Übersicht
 # Kwanghyun Ko (openmaya@gmail.com)
 
-#
-# Adjust the styles as you like
-#
-style =
+style: """
+  top: auto
+  bottom: 10%
+  right: 30px
+  left: auto
+  font-family: 'Andale Mono', sans-serif
+  color: rgba(145, 145, 145, .8)
+  font-weight: 50
+  text-align: left
+  text-transform: uppercase
+  font-size: 2vw
+  letter_spacing: 0.035em
+  font-smoothing: antialiased
+  line-height: 1.1em
+  text-shadow: 1px 1px 0px rgba(10, 10, 0, .1)
+  
+  .active
+    color: rgba(245, 245, 245, 1)
+    text-shadow: 1px 1px 0px rgba(105, 105, 105, .4)
 
-  # Define the position, where to display the time.
-  # Set properties you don't need to "auto"
-  position:
-    bottom: "10px"
-    right:  "10px"
-
-  # Font properties
-  font:                 "'Andale Mono', sans-serif"
-  font_color:           "rgba(145, 145, 145, .8)"
-  font_color_active:    "rgba(245, 245, 245, 1)"
-  font_size:            "2vw"
-  font_weight:          "50"
-  letter_spacing:       "0.035em"
-  line_height:          "1.1em"
-
-  # Text shadow
-  text_shadow:
-    blur:           "0px"
-    x_offset:       "1px"
-    y_offset:       "1px"
-    color:          "rgba(0, 0, 0, .1)"
-    color_active:   "rgba(105, 105, 105, .4)"
+"""
 
 # Get the current hour as word.
 command: ""
@@ -45,7 +39,7 @@ render: (o) -> """
     <span id="자">자</span><span id="정">정</span><span id="이">이</span><span id="삼">삼</span><span id="십1">십</span><br/>
     <span id="사">사</span><span id="오1">오</span><span id="십2">십</span><span id="오2">오</span><span id="분">분</span><br/>
   </div>
-  <div id="log">
+  <div id="log" class="active">
 
   </div>
 """
@@ -59,7 +53,7 @@ update: (output, dom) ->
     ["사","십2","오2"], ["오1","십2"], ["오1","십2","오2"]]
   noons = [["자","정"],["정","오1"]]
   
-  ligthOffAll = () ->$(dom).find(".active").removeClass("active")
+  ligthOffAll = () -> $(dom).find(".active").removeClass("active")
   lightOn = (str) -> $(dom).find("##{str}").addClass("active")
   log = (str) -> $(dom).find("#log").html(str)
   timeOn = (ar) -> lightOn typo for typo in ar
@@ -82,25 +76,4 @@ update: (output, dom) ->
       timeOn(minutes[m_idx])
       lightOn("분")
 
-style: """
-  top: #{@style.position.top}
-  bottom: #{@style.position.bottom}
-  right: #{@style.position.right}
-  left: #{@style.position.left}
-  width: #{@style.width}
-  font-family: #{@style.font}
-  color: #{@style.font_color}
-  font-weight: #{@style.font_weight}
-  text-align: left
-  text-transform: uppercase
-  font-size: #{@style.font_size}
-  letter-spacing: #{@style.letter_spacing}
-  font-smoothing: antialiased
-  line-height: #{@style.line_height}
-  text-shadow: #{@style.text_shadow.x_offset} #{@style.text_shadow.y_offset} #{@style.text_shadow.blur} #{@style.text_shadow.color}
 
-  .active
-    color: #{@style.font_color_active}
-    text-shadow: #{@style.text_shadow.x_offset} #{@style.text_shadow.y_offset} #{@style.text_shadow.blur} #{@style.text_shadow.color_active}
-
-"""
